@@ -11,11 +11,11 @@ This module provides the necessary resource creation and configuration parameter
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
+| Name | Version           |
+|------|-------------------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.7, < 2.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.0.0, < 5.0.0 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.5.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.9.0, < 5.0.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.5.0          |
 
 ## Providers
 
