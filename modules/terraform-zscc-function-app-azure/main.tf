@@ -176,19 +176,11 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app_with_manual_sync" 
     ]
   }
 
-  tags = var.global_tags
-
-}
-
-resource "null_resource" "manual_sync" {
-  count = var.run_manual_sync ? 1 : 0
   provisioner "local-exec" {
     command = "${var.path_to_scripts}/manual_sync.sh ${data.azurerm_subscription.current.subscription_id} ${var.resource_group} ${azurerm_linux_function_app.vmss_orchestration_app_with_manual_sync[0].name} 2>${var.path_to_scripts}/stderr >${var.path_to_scripts}/stdout; echo $? >${var.path_to_scripts}/exitstatus"
   }
 
-  triggers = {
-    always_run = timestamp()
-  }
+  tags = var.global_tags
 }
 
 data "local_file" "manual_sync_exist_status" {
