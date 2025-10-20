@@ -97,6 +97,9 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app" {
   storage_account_access_key = local.storage_account_access_key
   service_plan_id            = azurerm_service_plan.vmss_orchestration_app_service_plan.id
 
+  # Enable HTTPS only
+  https_only = true
+
   identity {
     type         = "UserAssigned"
     identity_ids = [var.managed_identity_id]
@@ -122,6 +125,14 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app" {
       python_version = "3.11"
     }
     application_insights_connection_string = azurerm_application_insights.vmss_orchestration_app_insights.connection_string
+    
+    # Disable all inbound traffic by denying all IPs
+    ip_restriction {
+      action     = "Deny"
+      ip_address = "0.0.0.0/0"
+      name       = "DenyAllInbound"
+      priority   = 100
+    }
   }
 
   lifecycle {
@@ -143,6 +154,9 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app_with_manual_sync" 
   storage_account_access_key = local.storage_account_access_key
   service_plan_id            = azurerm_service_plan.vmss_orchestration_app_service_plan.id
 
+  # Enable HTTPS only
+  https_only = true
+
   identity {
     type         = "UserAssigned"
     identity_ids = [var.managed_identity_id]
@@ -168,6 +182,14 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app_with_manual_sync" 
       python_version = "3.11"
     }
     application_insights_connection_string = azurerm_application_insights.vmss_orchestration_app_insights.connection_string
+    
+    # Disable all inbound traffic by denying all IPs
+    ip_restriction {
+      action     = "Deny"
+      ip_address = "0.0.0.0/0"
+      name       = "DenyAllInbound"
+      priority   = 100
+    }
   }
 
   lifecycle {
