@@ -97,7 +97,6 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app" {
   storage_account_access_key = local.storage_account_access_key
   service_plan_id            = azurerm_service_plan.vmss_orchestration_app_service_plan.id
 
-  # Enable HTTPS only
   https_only = true
 
   identity {
