@@ -125,12 +125,7 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app" {
     }
     application_insights_connection_string = azurerm_application_insights.vmss_orchestration_app_insights.connection_string
     
-    ip_restriction {
-      action     = "Deny"
-      ip_address = "0.0.0.0/0"
-      name       = "DenyAllInbound"
-      priority   = 100
-    }
+    ip_restriction_default_action = "Deny"
   }
 
   lifecycle {
@@ -180,13 +175,7 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app_with_manual_sync" 
     }
     application_insights_connection_string = azurerm_application_insights.vmss_orchestration_app_insights.connection_string
     
-    # Disable all inbound traffic by denying all IPs
-    ip_restriction {
-      action     = "Deny"
-      ip_address = "0.0.0.0/0"
-      name       = "DenyAllInbound"
-      priority   = 100
-    }
+    ip_restriction_default_action = "Deny"
   }
 
   lifecycle {
