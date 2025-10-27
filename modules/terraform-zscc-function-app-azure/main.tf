@@ -98,7 +98,6 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app" {
   service_plan_id            = azurerm_service_plan.vmss_orchestration_app_service_plan.id
 
   https_only = true
-  public_network_access_enabled = false
 
   identity {
     type         = "UserAssigned"
