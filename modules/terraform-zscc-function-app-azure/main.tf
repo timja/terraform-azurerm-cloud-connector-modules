@@ -126,8 +126,6 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app" {
       python_version = "3.11"
     }
     application_insights_connection_string = azurerm_application_insights.vmss_orchestration_app_insights.connection_string
-    
-    ip_restriction_default_action = "Deny"
   }
 
   lifecycle {
@@ -177,8 +175,6 @@ resource "azurerm_linux_function_app" "vmss_orchestration_app_with_manual_sync" 
       python_version = "3.11"
     }
     application_insights_connection_string = azurerm_application_insights.vmss_orchestration_app_insights.connection_string
-    
-    ip_restriction_default_action = "Deny"
   }
 
   lifecycle {
