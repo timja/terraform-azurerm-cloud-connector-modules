@@ -9,13 +9,13 @@ data "azurerm_subscription" "current" {
 ################################################################################
 # Create Storage Account to store Function App
 resource "azurerm_storage_account" "cc_function_storage_account" {
-  count                    = var.existing_storage_account ? 0 : 1
-  name                     = "stccvmss${var.resource_tag}"
-  resource_group_name      = var.resource_group
-  location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  public_network_access_enabled = false
+  count                           = var.existing_storage_account ? 0 : 1
+  name                            = "stccvmss${var.resource_tag}"
+  resource_group_name             = var.resource_group
+  location                        = var.location
+  account_tier                    = "Standard"
+  account_replication_type        = "LRS"
+  public_network_access_enabled   = false
   allow_nested_items_to_be_public = false
 
   tags = var.global_tags
@@ -217,6 +217,11 @@ resource "azurerm_private_endpoint" "storage_blob" {
   }
 
   tags = var.global_tags
+  lifecycle {
+    ignore_changes = [
+      private_dns_zone_group,
+    ]
+  }
 }
 
 resource "azurerm_private_endpoint" "storage_file" {
@@ -234,4 +239,9 @@ resource "azurerm_private_endpoint" "storage_file" {
   }
 
   tags = var.global_tags
+  lifecycle {
+    ignore_changes = [
+      private_dns_zone_group,
+    ]
+  }
 }
